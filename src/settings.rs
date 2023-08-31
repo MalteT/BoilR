@@ -34,9 +34,9 @@ impl Settings {
             // Add in a local configuration file
             // This file shouldn't be checked in to git
             .add_source(File::with_name("local.toml").required(false))
-            // Add in settings from the environment (with a prefix of STEAMSYNC)
-            // Eg.. `STEAMSYNC_DEBUG=1 ./target/app` would set the `debug` key
-            .add_source(Environment::with_prefix("boilr").separator("-"))
+            // Add in settings from the environment (with a prefix of BOILR)
+            // Eg.. `BOILR_DEBUG=1 ./target/app` would set the `debug` key
+            .add_source(Environment::with_prefix("boilr").separator("__"))
             .build()?;
         let mut settings = config.try_deserialize::<Settings>()?;
         sanitize_auth_key(&mut settings);
